@@ -1,0 +1,291 @@
+$grey: #e2e2e2;
+$bg: #ffeddd;
+$red: crimson;
+$black: #000000;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+    font-style: normal;
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transition: all 1s ease;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $bg;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+textarea {
+    resize: none;
+}
+
+input,
+textarea {
+    border-radius: 0;
+}
+
+input::placeholder,
+textarea::placeholder {
+    opacity: 1;
+}
+
+input:invalid,
+textarea:invalid {
+    box-shadow: none;
+}
+
+select {
+    border-radius: 0;
+}
+
+:root {
+    --tileSize: 60px;
+    --boardSize: 0px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+
+    &::selection {
+        background: transparentize(#7f8c8d, .4);
+    }
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: $grey;
+}
+
+.btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: darken($grey, 10%);
+    background-image: url("../assets/minesweeper-sprite.png");
+    background-repeat: no-repeat;
+    background-position: -2px -49px;
+    background-size: 550%;
+    text-decoration: none;
+    color: darken($grey, 30%);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        background-position: -55px -49px;
+    }
+}
+
+.btn--defeat {
+    background-position: -215px -49px;
+}
+
+.btn--win {
+    background-position: -162px -49px;
+}
+
+.btn--dismay {
+    background-position: -109px -49px;
+}
+
+.timer {
+    display: flex;
+    background-color: $black;
+}
+
+.digit {
+    display: block;
+    width: 29px;
+    height: 50px;
+    background-image: url("../assets/minesweeper-sprite.png");
+    background-repeat: no-repeat;
+    background-position: -272px 0;
+    background-size: 300px;
+}
+
+.digit--zero {
+    background-position: -272px 0;
+}
+
+.digit--one {
+    background-position: -1px 0;
+}
+
+.digit--two {
+    background-position: -31px 0;
+}
+
+.digit--three {
+    background-position: -61px 0;
+}
+
+.digit--four {
+    background-position: -91px 0;
+}
+
+.digit--five {
+    background-position: -121px 0;
+}
+
+.digit--six {
+    background-position: -151px 0;
+}
+
+.digit--seven {
+    background-position: -182px 0;
+}
+
+.digit--eight {
+    background-position: -212px 0;
+}
+
+.digit--nine {
+    background-position: -242px 0;
+}
+
+.counter {
+    display: flex;
+    background-color: $black;
+}
+
+.board {
+    background: $grey;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    border: 10px solid darken($grey, 5%);
+    box-sizing: content-box;
+
+    .tile {
+        background: $grey;
+        width: var(--tileSize);
+        height: var(--tileSize);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid darken($grey, 15%);
+        background-image: url("../assets/minesweeper-sprite.png");
+        background-repeat: no-repeat;
+        background-position:  0 -89px;
+        background-size: 245px;
+
+
+        &:hover:not(.tile--checked) {
+            opacity: 0.8;
+        }
+
+        &--checked {
+            background-position:  -30px -89px;
+
+            &:hover {
+                cursor: default;
+            }
+        }
+
+        &--one {
+            background-position:  0 -120px;
+        }
+
+        &--two {
+            background-position:  -29px -120px;
+        }
+
+        &--three {
+            background-position:  -59px -120px;
+        }
+
+        &--four {
+            background-position:  -89px -120px;
+        }
+
+        &--five {
+            background-position:  -120px -120px;
+        }
+
+        &--six {
+            background-position:  -150px -120px;
+        }
+
+        &--seven {
+            background-position:  -180px -120px;
+        }
+
+        &--eight {
+            background-position:  -210px -120px;
+        }
+
+        &--questioned {
+            background-position:  -89px -89px;
+        }
+
+        &--bomb {
+            background-position:  -150px -89px;
+        }
+
+        &--flagged {
+            background-position: -59px -89px;
+        }
+
+        &--defeat {
+            background-position:  -181px -89px;
+        }
+
+        &--mistaken-bomb {
+            background-position:  -211px -89px;
+        }
+    }
+}
