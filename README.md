@@ -2,5 +2,5 @@
 
 Для запуска выполните в консоли команды:
 
-npm install
+npm install  
 npm start
